@@ -37,7 +37,7 @@ public class Train {
     @Column(name = "TRAIN_KIND",nullable = false)
     private String trainKind;
 
-    public Train(int id, Route route, int sits, int waggons, int price, String time, String departureTime, String arrivalTime, String trainKind)
+    public Train(int id, Route route, int sits, int waggons, int price, String time, String departureTime, String arrivalTime, String trainKind  )
     {
         this.id=id;
         this.route=route;
@@ -48,7 +48,9 @@ public class Train {
         this.departureTime=departureTime;
         this.arrivalTime=arrivalTime;
         this.trainKind=trainKind;
+
     }
+
 
     public Integer getId() {
         return id;

@@ -2,16 +2,50 @@ package com.project.TrainApp;
 
 public class SearchTrainRequest {
 
+    private int id;
     private String departure;
     private String arrival;
     private String date;
+    private String trainId;
+    private boolean inTransit;
 
-    public SearchTrainRequest(String departure, String arrival, String date)
+    public SearchTrainRequest(int id, String departure, String arrival, String date)
     {
+        this.id=id;
         this.departure=departure;
         this.arrival=arrival;
         this.date=date;
+        trainId=Integer.toString(id);
+        if(id==2)
+            inTransit = false;
+        else
+            inTransit=true;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isInTransit() {
+        return inTransit;
+    }
+
+    public void setInTransit(boolean inTransit) {
+        this.inTransit = inTransit;
+    }
+
+    public String getTrainId() {
+        return trainId;
+    }
+
+    public void setTrainId(String trainId) {
+        this.trainId = trainId;
+    }
+
     public String getDeparture()
     {
         return departure;

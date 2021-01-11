@@ -130,6 +130,22 @@ public class AppController {
         return TrainAppApplication.SearchByStation(searchTrainRequest.getDeparture(),searchTrainRequest.getArrival(),searchTrainRequest.getDate());
     }
 
+    @GetMapping("/Trains")
+    public List<SearchTrainRequest> Train ()
+    {
+        List<Train> trainList = trainRepository.findAll();
+        List<SearchTrainRequest> sTrainList = new ArrayList<>();
+        for (Train train : trainList)
+        {
+            String date = train.getRoute().getDate();
+            String arrival = train.getRoute().getStations().get(0).getName();
+            String departure = train.getRoute().getStations().get(train.getRoute().getStations().size()-1).getName();
+            SearchTrainRequest sTrain = new SearchTrainRequest(train.getId(), departure, arrival, date);
+            sTrainList.add(sTrain);
+        }
+        return sTrainList;
+    }
+
     @GetMapping("/TrainInfo/{id}")
     public Train TrainInfo (@PathVariable("id") int id)
     {
@@ -183,6 +199,7 @@ public class AppController {
         }
         return null;
     }
+
 
     @GetMapping("/TrainRoute/{id}")
     public Route TrainRoute (@PathVariable("id") int id)
